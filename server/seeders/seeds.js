@@ -1,9 +1,11 @@
 const faker = require('faker');
 
 const db = require('../config/connection');
-const { Job, User } = require('../models');
+const { Job, User, Campground, Reaction } = require('../models');
 
 db.once('open', async () => {
+  await Reaction.deleteMany({});
+  await Campground.deleteMany({});
   await Job.deleteMany({});
   await User.deleteMany({});
 
@@ -18,12 +20,12 @@ db.once('open', async () => {
     userData.push({ username, email, password });
   }
 
-  const createdUsers = await User.collection.insertMany(userData);
+  const createdCampgrounds = await Campground.collection.insertMany(userData);
 
   // create friends
   for (let i = 0; i < 100; i += 1) {
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { _id: userId } = createdUsers.ops[randomUserIndex];
+    const randomUserIndex = Math.floor(Math.random() * createdCampgrounds.ops.length);
+    const { _id: campgroundId } = createdCampgrounds.ops[randomCampgroundIndex];
 
     let friendId = userId;
 
