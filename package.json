@@ -1,0 +1,20 @@
+{
+  "name": "working-rver",
+  "version": "1.0.0",
+  "description": "Job Board for Full Time Rv'ers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oldgraybuzzard/working-rver.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oldgraybuzzard/working-rver/issues"
+  },
+  "homepage": "https://github.com/oldgraybuzzard/working-rver#readme"
+}

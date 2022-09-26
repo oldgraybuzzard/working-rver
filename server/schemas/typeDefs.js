@@ -20,6 +20,14 @@ const typeDefs = gql`
     campgroundEmail: String
   }
 
+  type User {
+    _id: ID
+    userName: String
+    email: String
+    password: String
+
+  }
+
   type Reaction {
     _id: ID
     reactionBody: String
@@ -29,6 +37,7 @@ const typeDefs = gql`
     jobs: [Job]
     campgrounds: [Campground]
     reaction: [Reaction]
+    user: [User]
   }
 `;
 
