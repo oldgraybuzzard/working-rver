@@ -8,7 +8,7 @@ const typeDefs = gql`
     _id: ID
     jobText: String
     createdAt: String
-    userName: String
+    username: String
   }
 
   type Campground {
@@ -22,22 +22,43 @@ const typeDefs = gql`
 
   type User {
     _id: ID
-    userName: String
+    username: String
     email: String
-    password: String
+    friendCount: Int
+    jobs: [Job]
+    friends: [User]
 
   }
 
   type Reaction {
     _id: ID
     reactionBody: String
+    createdAt: String
+    username: String
   }
 
+   type Auth {
+    token: ID!
+    user: User
+  } 
+
   type Query {
-    jobs: [Job]
+    me: User
+    users: [User]
+    user(username: String): User
+    jobs(username: String): [Job]
+    job(_id: ID): Job
     campgrounds: [Campground]
+    campground(_id: ID): Campground
     reaction: [Reaction]
-    user: [User]
+  }
+
+  type Mutation {
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+    addJob(jobText: String!): Job
+    addReaction(thoughtId: ID!, reactionBody: String!): Job
+    addFriend(friendId: ID!): User
   }
 `;
 

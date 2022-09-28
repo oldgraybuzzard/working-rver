@@ -21,6 +21,38 @@ db.once('open', async () => {
 
   const createdUsers = await User.collection.insertMany(userData);
 
+  //create friends
+for (let i = 0; i < 50; i += 1) {
+  const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
+  const { _id: userId } = createdUsers.ops[randomUserIndex];
+
+  let friendId = userId;
+
+  while (friendId === userId) {
+    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
+    friendId = createdUsers.ops[randomUserIndex];
+  }
+  await User.updateOne({ _id: userId }, { $addToSet: { friends: friendId } });
+}
+
+//create job
+let createdJobs = [];
+for (let i = 0; i < 50; i += 1) {
+  const jobText = faker.lorem.sentence();
+
+  const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
+  const { username, _id: userId } = createdUsers.ops[randomUserIndex];
+  
+  const createdJob = await Job.create({ jobText, username });
+
+  const updatedUser = await User.updateOne(
+    { _id: userId },
+    { $push: { jobs: createdJob } }
+  );
+
+  createdJobs.push(createdJob);
+}
+
   // create camp grounds
  const campgroundData = [];
 
@@ -35,35 +67,23 @@ db.once('open', async () => {
 
 const createdCampground = await Campground.collection.insertMany(campgroundData);
 
-  // create camp grounds
- const jobData = [];
+// create reaction
+for (let i=0; i < 50; i += 1) {
+  const reactionBody = faker.lorem.sentence();
 
-  for (let i = 0; i < 50; i += 1) {
-    const jobText = faker.lorem.sentence();
-    const createdAt = faker.date.between('2022-01-01T00:00:00.000Z', '2022-09-01T00:00:00.000Z');
+  const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
+  const { username } = createdUsers.ops[randomUserIndex];
 
-    jobData.push({ jobText, createdAt });
-  }
+  const randomJobIndex = Math.floor(Math.random() * createdJobs.length);
+  const { _id: jobId } = createdJobs[randomJobIndex];
 
-const createdJob = await Job.collection.insertMany(jobData);
+  await Job.updateOne(
+    { _id: jobId },
+    { $push: { reactions: { reactionBody, username } } },
+    { runValidators: true }
+  );
+}
 
-// //create reactions
-//   for (let i = 0; i < 100; i += 1) {
-//     const reactionBody = faker.lorem.words(Math.round(Math.random() * 20) + 1);
-
-//     const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-//     const { username } = createdUsers.ops[randomUserIndex];
-
-//     const randomJobIndex = Math.floor(Math.random() * createdJob.length);
-//     const { _id: jobId } = createdJob[randomJobIndex];
-
-//     await Job.updateOne(
-//       { _id: jobId },
-//       { $push: { reactions: { reactionBody, username } } },
-//       { runValidators: true }
-//     );
-//   }
-
-  console.log('all done!');
+  console.log('DB is seeded!');
   process.exit(0);
 });
