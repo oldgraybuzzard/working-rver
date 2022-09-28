@@ -1,4 +1,5 @@
 const { User, Job, Reaction, Campground } = require("../models");
+// return an authentication error if username or password is incorrect
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 

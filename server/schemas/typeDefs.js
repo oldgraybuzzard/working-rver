@@ -9,6 +9,8 @@ const typeDefs = gql`
     jobText: String
     createdAt: String
     username: String
+    reactionCount: Int
+    reactions: [Reaction]
   }
 
   type Campground {
@@ -50,14 +52,13 @@ const typeDefs = gql`
     job(_id: ID): Job
     campgrounds: [Campground]
     campground(_id: ID): Campground
-    reaction: [Reaction]
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addJob(jobText: String!): Job
-    addReaction(thoughtId: ID!, reactionBody: String!): Job
+    addReaction(jobId: ID!, reactionBody: String!): Job
     addFriend(friendId: ID!): User
   }
 `;
