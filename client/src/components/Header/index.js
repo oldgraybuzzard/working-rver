@@ -12,7 +12,7 @@ function Header() {
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggle-icon"></span>
       </button></Navbar.Brand>
-      <Nav.Link href="#home">Home</Nav.Link>
+      <Nav.Link href="/">Home</Nav.Link>
       <Nav.Link href="/dashboard">RV'er Seeking</Nav.Link>
       <Nav.Link href="/dashboard">Seeking an RV'er</Nav.Link>
       <Button variant="outline-secondary">Login</Button>{' '}
