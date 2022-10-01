@@ -1,25 +1,23 @@
 import React from 'react';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/navbar';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
-function Header() {
+const Header = () => {
   return (
-    <Navbar expand="lg" sticky="top">
-      <Container>
-        <Navbar.Brand href="#home"><a class="navbar-brand" href="/"><img src="../../assets/logo.png" alt="logo" width="128" height="28"/></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggle-icon"></span>
-      </button></Navbar.Brand>
-      <Nav.Link href="/">Home</Nav.Link>
-      <Nav.Link href="/dashboard">RV'er Seeking</Nav.Link>
-      <Nav.Link href="/dashboard">Seeking an RV'er</Nav.Link>
-      <Button variant="outline-secondary">Login</Button>{' '}
-      <Button variant="outline-primary">Join</Button>{' '}
-      <Button id="logout" varian="btn-no-style">Log Out</Button>{' '}
-      </Container>
-    </Navbar>
+    <header className="bg-secondary mb-4 py-2 flex-row align-center" sticky="top">
+      <div className="container flex-row justify-space-between-lg justify-center align-center">
+        <Link to="/">
+          <h1>Working RV'er</h1>
+        </Link>
+
+        <nav className="text-center">
+          <Link to="/">Home</Link>
+          <Link to="/dashboard">RV'er Seeking</Link>
+          <Link to="/dashboard">Seeking an RV'er</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/Signup">Signup</Link>
+        </nav>
+      </div>
+    </header>
   );
 };
 

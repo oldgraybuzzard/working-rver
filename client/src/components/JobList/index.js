@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const JobList = ({ jobs, title }) => {
   if (!jobs.length) {
@@ -12,15 +13,23 @@ const JobList = ({ jobs, title }) => {
         jobs.map(job => (
           <div key={job._id} className="card mb-3">
             <p className="card-header">
-              {job.username}
+              <Link
+                to={`/profile/${job.username}`}
+                style={{ fontWeight: 700 }}
+                className="text-light"
+                >
+                {job.username}
+              </Link>{' '}
               job on {job.createdAt}
             </p>
             <div className="card-body">
-              <p>{job.jobText}</p>
-              <p className="mb-0">
-                Reactions: {job.reactionCount} || Click to{' '}
-                {job.reactionCount ? 'see' : 'start'} the discussion!
-              </p>
+              <Link to={`/job/${job._id}`}>
+                <p>{job.jobText}</p>
+                <p className="mb-0">
+                  Reactions: {job.reactionCount} || Click to{' '}
+                  {job.reactionCount ? 'see' : 'start'} the discussion!
+                </p>
+              </Link>
             </div>
           </div>
         ))}
