@@ -25,7 +25,7 @@ const Home = () => {
             <JobList jobs={jobs} title="Seeking RV'ers...."/>
           )}
           </div>
-m            {loggedIn && userData ? (
+            {loggedIn && userData ? (
               <div className="col-12 col-lg-3 mb-3">
                 <FriendList
                   username={userData.me.username}
