@@ -9,7 +9,7 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <Navbar className="bg-secondary mb-4 py-2 flex-row align-center" sticky="top">
+    <Navbar className="bg-light mb-4 py-1 flex-row align-center" sticky="top">
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <Link to='/'>
           <h1>Working RV'er</h1>

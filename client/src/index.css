@@ -32,7 +32,7 @@ body {
   line-height: 1.5;
   font-size: 20px;
   color: var(--dark);
-  background-color: #f3fffee1;
+  background-image: url("../src/assets/airstream-desert.png");
 }
 
 h1,

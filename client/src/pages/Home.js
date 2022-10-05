@@ -12,7 +12,6 @@ const Home = () => {
   // use object destructuring to extract `data` from the `useQuery` Hook's response and rename it `userData` to be more descriptive
   const { data: userData } = useQuery(QUERY_ME_BASIC);
   const jobs = data?.jobs || [];
-  console.log(jobs);
 
   const loggedIn = Auth.loggedIn();
 
@@ -28,7 +27,7 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <JobList jobs={jobs} title="Seeking RV'ers...."/>
+            <JobList jobs={jobs.slice(0,10)} title="Seeking RV'ers...."/>
           )}
           </div>
             {loggedIn && userData ? (

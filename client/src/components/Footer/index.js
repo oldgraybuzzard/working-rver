@@ -12,8 +12,8 @@ function Footer() {
 
   return (
     <Container>
-       <Navbar fluid="lg">
-            <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+       <Navbar bg="light" fluid="lg">
+            <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark">
             <img src="../../assets/logo.png" alt="logo" width="128" height="28"/></a>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="#">Contact Us</Nav.Link>
