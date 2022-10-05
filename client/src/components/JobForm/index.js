@@ -28,7 +28,7 @@ const JobForm = () => {
 });
 
   const handleChange = event => {
-    if (event.target.value.length <= 10) {
+    if (event.target.value.length <= 1000) {
       setText(event.target.value);
       setCharacterCount(event.target.value.length);
     }
@@ -53,8 +53,8 @@ const JobForm = () => {
 
   return (
     <div>
-      <p className={`m-0 ${characterCount === 10 || error ? 'text-error' : ''}`}>
-        Character Count: {characterCount}/10
+      <p className={`m-0 ${characterCount === 1000 || error ? 'text-error' : ''}`}>
+        Character Count: {characterCount}/1000
         {error && <span className='ml-2'>Something went wrong...</span>}
       </p>
 

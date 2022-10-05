@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_JOB } from '../utils/queries';
 import ReactionList from '../components/ReactionList';
+import ReactionForm from '../components/ReactionForm';
+import Auth from '../utils/auth';
 
 const SingleJob = props => {
   const { id: jobId } = useParams();
@@ -29,6 +31,7 @@ const SingleJob = props => {
         </div>
       </div>
       {job.reactionCount > 0 && <ReactionList reactions={job.reactions} />}
+      {Auth.loggedIn() && <ReactionForm jobId={job._id} />}
     </div>
   );
 };

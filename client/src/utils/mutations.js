@@ -52,3 +52,18 @@ export const ADD_JOB = gql`
     }
   }
   `;
+
+  export const ADD_REACTION = gql`
+    mutation addReaction($jobId: ID!, $reactionBody: String!) {
+      addReaction(jobId: $jobId, reactionBody: $reactionBody) {
+          _id
+          reactionCount
+          reactions {
+            _id
+            reactionBody
+            createdAt
+            username
+          }
+        }
+      }
+    `;
