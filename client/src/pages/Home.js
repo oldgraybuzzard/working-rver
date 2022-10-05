@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_JOBS, QUERY_ME_BASIC } from '../utils/queries';
 import JobList from '../components/JobList';
 import FriendList from '../components/FriendList';
+import JobForm from '../components/JobForm';
 import Auth from '../utils/auth';
 
 const Home = () => {
@@ -18,6 +19,11 @@ const Home = () => {
   return (
     <main>
       <div className='flex-row justify-space-between'>
+        {loggedIn && (
+          <div className="col-12 mb-3">
+            <JobForm />
+            </div>
+        )}
         <div className={`col-12 mb-3' ${loggedIn && 'col-lg-8'}`}>
           {loading ? (
             <div>Loading...</div>

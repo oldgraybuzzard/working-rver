@@ -3,6 +3,7 @@ import { Redirect, useParams } from 'react-router-dom';
 import JobList from '../components/JobList';
 import FriendList from '../components/FriendList';
 import { ADD_FRIEND } from '../utils/mutations';
+import JobForm from '../components/JobForm';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
@@ -70,6 +71,7 @@ const Profile = () => {
             />
         </div>
       </div>
+      <div className="mb-3">{!userParam && <JobForm />}</div>
     </div>
   );
 };
