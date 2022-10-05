@@ -37,3 +37,18 @@ export const ADD_FRIEND = gql`
     }
   }
 `;
+
+export const ADD_JOB = gql`
+  mutation addJob($jobText: String!) {
+    addJob(jobText: $jobText) {
+      _id
+      jobText
+      createdAt
+      username
+      reactionCount
+      reactions {
+        _id
+      }
+    }
+  }
+  `;
