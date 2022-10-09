@@ -896,6 +896,34 @@ nav a:hover {
   flex: 0 0 100%;
 }
 
+/* pagination */
+.paginationButtons {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: left;
+}
+
+.paginationButtons a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid var(--quinary);
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.paginationButtons a:hover {
+  color: white;
+  background-color: var(--primary);
+}
+
+.paginationActive a {
+  color: white;
+  background-color: var(--primary);
+}
+
 /* col-sm */
 @media screen and (min-width: 640px) {
   .col-sm-auto {

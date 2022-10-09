@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import { useQuery } from '@apollo/client';
 import { QUERY_JOBS, QUERY_ME_BASIC } from '../utils/queries';
 import JobList from '../components/JobList';
@@ -12,7 +13,25 @@ const Home = () => {
   // use object destructuring to extract `data` from the `useQuery` Hook's response and rename it `userData` to be more descriptive
   const { data: userData } = useQuery(QUERY_ME_BASIC);
   const jobs = data?.jobs || [];
-  console.log(jobs);
+  // console.log(jobs);
+
+  //pagination area
+  const [pageNumber, setPageNumber] = useState(0);
+  const jobsPerPage = 10;
+  const pagesVisited = pageNumber * jobsPerPage;
+
+  const displayJobs = jobs.slice(pagesVisited, pagesVisited + jobsPerPage).map((jobs) => {
+    return (
+     jobs
+    );
+  });
+
+  const pageCount = Math.ceil(jobs.length / jobsPerPage);
+
+  const changePage =  ({selected}) => {
+    setPageNumber(selected);
+  }
+  // end pagination
 
   const loggedIn = Auth.loggedIn();
 
@@ -28,7 +47,9 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <JobList jobs={jobs} title="Seeking RV'ers...."/>
+           <JobList jobs={displayJobs} 
+           title="Seeking RV'ers...."/>
+
           )}
           </div>
             {loggedIn && userData ? (
@@ -41,6 +62,17 @@ const Home = () => {
           </div>
         ) : null}
       </div>
+      <ReactPaginate 
+              previousLabel={"Previous"}
+              nextLabel={"Next"}
+              pageCount={pageCount}
+              onPageChange={changePage}
+              containerClassName={"paginationButtons"}
+              previousLinkClassName={"previousButton"}
+              nextLinkClassName={"nextBtn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive"}
+      />
     </main>
   );
 };
